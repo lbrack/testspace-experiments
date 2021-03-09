@@ -27,6 +27,7 @@ jobs:
 
     - name: Push test results to testspace
       run: |
-          testspace "[frontend]./junit-frontend.xml{complex-job/frontend}" "[backend]./junit-backend.xml{complex-job/backend}"
+          testspace "[backend]./junit-backend.xml{complex-job/backend}"
+          testspace "[frontend]./junit-frontend.xml{complex-job/frontend}"
       working-directory: ${{env.working-directory}}
       if: always()
