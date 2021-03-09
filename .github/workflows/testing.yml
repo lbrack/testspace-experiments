@@ -1,4 +1,4 @@
-name: Jest Tests
+name: Complex Workflow
 on: push
 
 jobs:
@@ -17,12 +17,12 @@ jobs:
 
     - name: Run frontend tests
       run: |
-        pip install -r complex-job/requirements.txt
-        pytest complex-job/backend --junit-xml=junit-backend.xml
+        pip install -r complex-workflow/requirements.txt
+        pytest complex-workflow/backend --junit-xml=junit-backend.xml
 
     - name: Push test results to testspace
       run: |
-          testspace "[backend]./junit-backend.xml{complex-job/backend}"
+          testspace "[backend]./junit-backend.xml{complex-workflow/backend}"
       working-directory: ${{env.working-directory}}
       if: always()
 
@@ -41,11 +41,11 @@ jobs:
 
     - name: Run frontend tests
       run: |
-        pip install -r complex-job/requirements.txt
-        pytest complex-job/frontend --junit-xml=junit-frontend.xml
+        pip install -r complex-workflow/requirements.txt
+        pytest complex-workflow/frontend --junit-xml=junit-frontend.xml
 
     - name: Push test results to testspace
       run: |
-          testspace "[frontend]./junit-frontend.xml{complex-job/frontend}"
+          testspace "[frontend]./junit-frontend.xml{complex-workflow/frontend}"
       working-directory: ${{env.working-directory}}
       if: always()
