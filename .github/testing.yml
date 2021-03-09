@@ -1,0 +1,28 @@
+name: Jest Tests
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: testspace-com/setup-testspace@v1
+      with:
+        domain: ${{ github.repository_owner }}
+
+    - name: Run frontend tests
+      run: |
+        pip install -r complex-job/requirements.txt
+        pytest complex-job/frontend --junit-xml=junit-frontend.xml
+
+    - name: Run frontend tests
+      run: |
+        pip install -r complex-job/requirements.txt
+        pytest complex-job/backend --junit-xml=junit-backend.xml
+
+    - name: Push test results to testspace
+      run: |
+          testspace "[frontend].junit-frontend.xml{complex-job/frontend}" "[backend]./junit-backend.xml{complex-job/backend}"
+      working-directory: ${{env.working-directory}}
+      if: always()
