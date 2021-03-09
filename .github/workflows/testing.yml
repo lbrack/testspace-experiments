@@ -11,6 +11,10 @@ jobs:
       with:
         domain: ${{ github.repository_owner }}
 
+    - name: Add local bin to path
+      run: |
+        echo "/home/runner/.local/bin" >> $GITHUB_PATH
+
     - name: Run frontend tests
       run: |
         pip install -r complex-job/requirements.txt
