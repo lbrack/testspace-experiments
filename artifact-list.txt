@@ -1,0 +1,4 @@
+manifest.md
+[complex-workflow.backend.test_backend.test_screenshot]+./artifacts/screenshot-1.png{screen capture}
+[backend]+./artifacts/screenshot-1.png{screen capture #2}
+[complex-workflow]+./artifacts/screenshot-2.png{screen capture #2}
